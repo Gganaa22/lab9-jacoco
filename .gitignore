@@ -1,0 +1,8 @@
+﻿target/
+.idea/
+.DS_Store
+.metals/
+.vscode/
+._*
+__MACOSX/
+*.docx
