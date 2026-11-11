@@ -2,6 +2,8 @@ package mn.edu.must.sqat;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ScholarshipCalculatorTest {
 
@@ -64,4 +66,12 @@ class ScholarshipCalculatorTest {
     // 0 iterations: gpaNullThrows, gpaEmptyThrows (Part B)
     @Test void gpaSingleGrade() { assertEquals(4.0, calc.gpa(new double[]{95}), 0.001); }
     @Test void gpaManyGrades() { assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 0.001); }
+
+
+        // ---- Part D: boundary values (spec: 60-69.99 is D) ----
+    @ParameterizedTest(name = "score {0} -> {1}")
+    @CsvSource({"0,F", "59.99,F", "60,D", "69.99,D", "89.99,B", "90,A", "100,A"})
+    void letterGradeBoundaries(double score, String expected) {
+        assertEquals(expected, calc.letterGrade(score));
+    }
 }
