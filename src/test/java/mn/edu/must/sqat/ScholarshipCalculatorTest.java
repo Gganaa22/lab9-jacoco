@@ -59,4 +59,9 @@ class ScholarshipCalculatorTest {
     @Test void scholarshipCreditsNegativeThrows() {
         assertThrows(IllegalArgumentException.class, () -> calc.scholarship(3.0, -1, false));
     }
+
+        // ---- Part C: loop 0 / 1 / 2+ iterations ----
+    // 0 iterations: gpaNullThrows, gpaEmptyThrows (Part B)
+    @Test void gpaSingleGrade() { assertEquals(4.0, calc.gpa(new double[]{95}), 0.001); }
+    @Test void gpaManyGrades() { assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 0.001); }
 }
